@@ -1,47 +1,52 @@
 package com.devsuperior.movieflix.dto;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import com.devsuperior.movieflix.entities.User;
 
-public class UserDTO implements Serializable{
+
+public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	
-	@NotBlank(message = "campo obrigatório")
+	@NotBlank(message = "Campo obrigatório")
 	private String name;
 
-	
-	@Email(message = "Favor entrar com um email válido")
+	@Email(message = "Favor entrar um email válido")
 	private String email;
 	
-	Set<RoleDTO> roles = new HashSet<>();
-	
-	public UserDTO() {
-	}
+	//Set<RoleDTO> roles = new HashSet<>();
 
-	public UserDTO(Long id, String name, String email, String password) {
+	//private List<ReviewDTO> reviews = new ArrayList<>();
+
+	
+	public UserDTO() {}
+
+	public UserDTO(Long id, String name, String email) {
 		this.id = id;
 		this.name = name;
-
 		this.email = email;
 	}
 	
 	public UserDTO(User entity) {
-		this.id = entity.getId();
-		this.name =  entity.getName();
+		id = entity.getId();
+		name = entity.getName();
+		email = entity.getEmail();
+		//entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
+	}
 
-		this.email = entity.getEmail();
-		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
+	/*
+	public UserDTO(User entity, List<Review> list) {
+		this(entity);
+		list.forEach(x -> this.reviews.add(new ReviewDTO(x)));
 
 	}
-	
+	 */
+
 	public Long getId() {
 		return id;
 	}
@@ -66,11 +71,14 @@ public class UserDTO implements Serializable{
 		this.email = email;
 	}
 
+	/*
 	public Set<RoleDTO> getRoles() {
 		return roles;
 	}
-	
-	
 
-	
+	public List<ReviewDTO> getReviews() {
+		return reviews;
+
+	}
+	 */
 }

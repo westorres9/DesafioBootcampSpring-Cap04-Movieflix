@@ -1,28 +1,31 @@
 package com.devsuperior.movieflix.dto;
 
+
 import java.io.Serializable;
 
 import com.devsuperior.movieflix.entities.Role;
 
-public class RoleDTO implements Serializable{
+public class RoleDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
-	private String Authority;
+	private String authority;
 	
 	public RoleDTO() {
 	}
 
 	public RoleDTO(Long id, String authority) {
+		super();
 		this.id = id;
-		Authority = authority;
-	}
-	
-	public RoleDTO(Role entity) {
-		this.id = entity.getId();
-		Authority = entity.getAuthority();
+		this.authority = authority;
 	}
 
+	public RoleDTO(Role role) {
+		super();
+		id = role.getId();
+		authority = role.getAuthority();
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -32,12 +35,10 @@ public class RoleDTO implements Serializable{
 	}
 
 	public String getAuthority() {
-		return Authority;
+		return authority;
 	}
 
 	public void setAuthority(String authority) {
-		Authority = authority;
+		this.authority = authority;
 	}
-	
-	
 }
